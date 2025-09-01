@@ -48,7 +48,168 @@ Online-shop  Project by Didin `<127.0.0.1:8000>`
 <p align="center"> Tested locally</p>
 </div>
 
-## **Phase 2: Deploy Application on Docker**
+## **Phase 2: Configure on Github **
+
+Create a  Github Repository for the web-application. Create 4 branch dev (developer), test (tester), prepod (preproduction), main (Production).
+
+**Assign branch  Protection rules for test, prepod, main branch.**
+
+For test branch:
+
+ - Require a pull request before merging 
+ - Require approvals – atleast one approval is required
+ - Dismiss stale pull request approvals when new commits are pushed
+ - Require review from Code Owners
+ - Require linear history 
+
+For prepod branch:
+
+ - Require a pull request before merging 
+ - Require approvals – atleast one approval is required
+ - Dismiss stale pull request approvals when new commits are pushed 
+ - Require review from Code Owners 
+ - Require approval of the most recent reviewable push 
+ - Require linear history
+ - Allow force pushes
+
+For main branch:
+
+ - Require a pull request before merging 
+ - Require approvals – atleast one approval is required
+ - Dismiss stale pull request approvals when new commits are pushed 
+ - Require review from Code Owners 
+ - Require status checks to pass before merging
+ - Allow force pushes
+ - Allow deletions
+
+**Goto Collaborators on Github and add  Collaborators for approval for the code.**
+
+Add 3 or more people 
+
+ - one for test branch
+ - 2nd one for prepod branch
+ - 3rd one for main branch
+
+**Add webhook**
+
+Copy the ip of jenkins and paste it with /github-webhook/ .
+Ex ( http://1.1.1.0:8080/github-webhook/)
+
+Change the content type to (application/json)
+
+Enable let me select individual event
+
+    • Branch protection configurations 
+    • Branch protection rules 
+    • Bypass requests for push rulesets 
+    • Check runs 
+    • Code scanning alerts 
+    • Collaborator add, remove, or changed 
+    • Dependabot alerts 
+    • Deploy keys 
+    • Deployment statuses 
+    • Deployments 
+    • Discussion comments 
+    • Discussions 
+    • Dismissal requests for code scanning alerts 
+    • Dismissal requests for secret scanning alerts 
+    • Labels 
+    • Merge groups 
+    • Milestones 
+    • Packages 
+    • Pull request review comments 
+    • Pull request review threads 
+    • Pull request reviews 
+    • Pull requests 
+    • Pushes 
+    • Registry packages 
+    • Releases 
+    • Repositories 
+    • Repository advisories 
+    • Repository imports
+    • Repository rulesets 
+    • Repository vulnerability alerts 
+    • Secret scanning alert locations 
+    • Secret scanning alerts 
+    • Secret scanning scans 
+    • Security and analyses 
+    • Statuses
+    • Sub issues
+    •  Team adds
+    •  Visibility changes 
+    • Watches
+    •  Wiki
+    •  Workflow jobs
+    • Workflow runs 
+
+  Enable above Events. Create Webhook.
+
+**Goto Environments  on Github and add  Environments  to provide protection rule for the Collaborators**
+
+For test branch
+- Required reviewers
+  - Select any reviewers from testing team
+- On Deployment branches and tags  
+  -  Select ( Selected Branches and tags)
+- Add test branch 
+
+For prepod branch
+- Required reviewers
+  - Select any reviewers from preproduction team
+- On Deployment branches and tags  
+  -  Select ( Selected Branches and tags)
+- Add prepod branch 
+
+For main branch
+- Required reviewers
+  - Select any reviewers from production team
+- On Deployment branches and tags  
+  -  Select ( Selected Branches and tags)
+- Add main branch 
+
+Now the developer pushes the code to Github . The developer wants to  create a pull request to test branch , After the approval of the testing team it will merge to test branch . Now the tester want to create a pill request to prepod branch , After the approval of preproduction team it will merge to prepod branch . The preproduction team will create a pull request to main branch , After the approval of the production manager it will merge to main branch . 
+
+In sometime there is a file , we want to update the file . We  had updated while pushing a  conflict will occur to resolve it .   
+
+
+```bash
+git fetch origin
+```
+
+```bash
+git chekout main
+```
+
+```bash
+git pull main
+```
+
+```bash
+git checkout prepod
+```
+
+```bash
+git merge main
+```
+
+**you will get what is the conflict sort it out**
+
+```bash
+git add .
+```
+
+```bash
+git commit -m “sorted out the conflict”
+```
+
+```bash
+git push origin prepod
+```
+
+Here i got the conflict error while pushing from prepod to main. If you got the conflict error from test to prepod . Change the above command main-->prepod prepod-->test.
+
+
+## **Phase 3: Deploy Application on Docker**
 
 **Step 1: Launch EC2 (ubuntu 22.04) on (us-east-2) region**
 
