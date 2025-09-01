@@ -27,10 +27,23 @@ source venv/bin/activate
 
 Install Dependencies
 
+```bash
+sudo apt-get install -y python3-dev python3-pip python3-venv \
+    libjpeg-dev zlib1g-dev libfreetype6-dev \
+    liblcms2-dev libopenjp2-7-dev libtiff5-dev \
+    tk-dev tcl-dev libharfbuzz-dev libfribidi-dev \
+    libwebp-dev libxcb1-dev
+```
+
+```bash
+pip install --upgrade pip setuptools wheel
+pip install --no-cache-dir Pillow
+```
 
 ```bash
 pip install -r requirements.txt
 ```
+
 
 ```bash
 python3 manage.py migrate
@@ -254,6 +267,20 @@ source venv/bin/activate
 ```
 
 **Step 6: Install Dependencies**
+
+
+```bash
+sudo apt-get install -y python3-dev python3-pip python3-venv \
+    libjpeg-dev zlib1g-dev libfreetype6-dev \
+    liblcms2-dev libopenjp2-7-dev libtiff5-dev \
+    tk-dev tcl-dev libharfbuzz-dev libfribidi-dev \
+    libwebp-dev libxcb1-dev
+```
+
+```bash
+pip install --upgrade pip setuptools wheel
+pip install --no-cache-dir Pillow
+```
 
 ```bash
 pip install -r requirements.txt
@@ -912,7 +939,7 @@ Your application is deployed in docker to access it.
 <p align="center"> Home Page </p>
 </div>
 
-## **Phase 3: Moniter the Application**
+## **Phase 4: Moniter the Application**
 
 **Step 1: Launch EC2 (Ubuntu 22.04) on us-east-2 Region**
 
@@ -1228,7 +1255,7 @@ Grafana is a powerful tool for creating visualizations and dashboards, and you c
 That's it! You've successfully installed and set up Grafana to work with Prometheus for monitoring and visualization 
 
 
-## Deploy Application on Argocd Kubernetes Using LoadBalancer
+## **Phase 5: Deploy Application on Argocd Kubernetes Using LoadBalancer**
 
 **Step 1: Launch EC2 (ubuntu 22.04) on us-east-2**
 
