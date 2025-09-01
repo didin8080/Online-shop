@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: online-shop
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+       app: online-shop
+  template:
+    metadata:
+      labels:
+        app: online-shop
+    spec:
+      containers:
+        - name: online-shop
+          image: didin8080/online-shop:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: EXTRA_ALLOWED_HOSTS
+              value: |
+                ac768b6d64ce246faa19603339360dfe-551744560.us-east-2.elb.amazonaws.com
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+      imagePullSecrets:
+       - name: regcred
