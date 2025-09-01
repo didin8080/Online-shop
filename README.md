@@ -1317,7 +1317,7 @@ kubectl get all
 ```
 
 
-You will get a link like this `a6183fcdd6dc64fb79deb5742b8baf19-1690874756.eu-north-1.elb.amazonaws.com`
+You will get a link like this `ac768b6d64ce246faa19603339360dfe-551744560.us-east-2.elb.amazonaws.com`
 
 Copy and paste it on terminal.
 
