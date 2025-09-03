@@ -2,6 +2,8 @@
 
 **Deploying Jenkins on one region (us-east-2) and Docker, Sonarqube are on another region (us-east-1)** 
 
+In this production-level DevOps project, developers push code that flows through an approval-driven promotion pipeline—from the initial testing branch, where the testing team reviews and authorizes the changes, to the pre-production (preprod) branch, pending the preprod team's sign-off, and finally into the main branch after main team approval. Once merged into main, Jenkins automatically builds the code, runs static code analysis via SonarQube, performs file-level vulnerability scanning with Trivy, builds a Docker image that it again scans with Trivy, then pushes the secured image to Docker Hub. Deployment is managed via Argo CD following GitOps principles. ontinuous monitoring is achieved using Prometheus for metrics collection and Grafana for visual dashboards, ensuring real-time observability and reliability.
+
 ## **Phase 1: Test locally**
 
 **Step 1: clone the repository**
@@ -17,7 +19,7 @@ sudo apt update
 sudo apt install python3 python3-pip python3-venv -y
 ```
 
-Create vurtual environment
+Create virtual environment
 
 
 ```bash
